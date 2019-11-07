@@ -4,11 +4,12 @@ import List from '.';
 
 const mapStateToProps = state => {
 	const {
-		list
+		list: { selectedCategory, selectedItem }
 	} = state;
 
 	return {
-		list
+		selectedCategory,
+		selectedItem
 	};
 };
 

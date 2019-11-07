@@ -14,16 +14,16 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const CategoriesList = props => {
-    const { list, selectItem } = props;
+    const { items, selectItem, searchedItems } = props;
     const [selectedIndex, setSelectedIndex] = useState();
-    const items = list.searchedItems || list[list.selectedCategory] || [];
+    const listItems = searchedItems || items || [];
     const classes = useStyles();
     
     return (
         <Paper>
             {list.showLoading && <CircularProgress className={classes.progress} />}
             <List component="nav">
-                {map(items, (item, key) =>
+                {map(listItems, (item, key) =>
                     <ListItem
                     button
                     selected={selectedIndex === key}

@@ -4,8 +4,7 @@ import Header from '../Header/withData';
 import Item from './item';
 
 const ListCharacters = props => {
-    const { list, getAllItems } = props;
-    const selectedCategory = list.selectedCategory;
+    const { selectedCategory, selectedItem, getAllItems } = props;
 
     useEffect(() => {
         getAllItems(selectedCategory);
@@ -14,7 +13,7 @@ const ListCharacters = props => {
     return (
         <Header>
             <GridContainer>
-                <Item selectedItem={list.selectedItem} />
+                <Item selectedItem={selectedItem} />
             </GridContainer>
         </Header>
     )
