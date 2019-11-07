@@ -1,12 +1,8 @@
 import { combineReducers } from 'redux';
-import Movies from './movies';
-import Characters from './characters';
-import Header from './header';
+import List from './list';
 
 const stores = {
-    characters: Characters,
-    movies: Movies,
-    header: Header
+    list: List
 };
 
 export default combineReducers(stores);

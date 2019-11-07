@@ -4,16 +4,17 @@ import Header from '../Header/withData';
 import Item from './item';
 
 const ListCharacters = props => {
-    const { getAllCharacters, selectCharacter, items, searchedItems, selectedItem } = props;
+    const { list, getAllItems } = props;
+    const selectedCategory = list.selectedCategory;
 
     useEffect(() => {
-        !items && getAllCharacters();
-    });
+        getAllItems(selectedCategory);
+    }, [selectedCategory]);
     
     return (
         <Header>
-            <GridContainer items={searchedItems || items} onSelect={selectCharacter} >
-                <Item selectedItem={selectedItem} />
+            <GridContainer>
+                <Item selectedItem={list.selectedItem} />
             </GridContainer>
         </Header>
     )

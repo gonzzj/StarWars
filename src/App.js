@@ -4,8 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from './reducers';
-import ListMovies from './components/ListMovies/withData';
-import ListCharacters from './components/ListCharacters/withData';
+import List from './components/List/withData';
 import Error from './components/Error'
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -27,9 +26,7 @@ const App = () => {
 	return (
 		<BrowserRouter>
 			<Switch>
-				<Route exact path="/" component={ListMovies}/>
-				<Route path="/movies" component={ListMovies}/>
-				<Route path="/characters" component={ListCharacters}/>
+				<Route exact path="/starwars" component={List}/>
 				<Route component={Error}/>
 			</Switch>
 		</BrowserRouter>

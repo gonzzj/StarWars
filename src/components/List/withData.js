@@ -1,24 +1,21 @@
 import { connect } from 'react-redux';
 import * as l from '../../actions/list';
-import Header from '.';
+import List from '.';
 
 const mapStateToProps = state => {
 	const {
-		list: { search }
+		list
 	} = state;
 
 	return {
-		searchValue: search
+		list
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
-		searchItem: item => {
-			dispatch(l.searchItem(item))
-		},
-		selectCategory: category => {
-			dispatch(l.selectCategory(category));
+		getAllItems: category => {
+			dispatch(l.getAll(category));
 		}
 	};
 };
@@ -26,4 +23,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Header);
+)(List);

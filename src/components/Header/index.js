@@ -16,7 +16,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InputBase from '@material-ui/core/InputBase';
 import { Movie, RecentActors, Search } from '@material-ui/icons';
-import { Link as RouterLink } from 'react-router-dom';
+import { messages } from '../../messages/messages';
 
 const drawerWidth = 240;
 
@@ -113,18 +113,10 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const Header = ({ children, searchValue, searchItem }) => {
+const Header = ({ children, searchValue, searchItem, selectCategory }) => {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = useState(true);
-
-    function handleDrawerOpen() {
-        setOpen(true);
-    }
-
-    function handleDrawerClose() {
-        setOpen(false);
-    }
 
     return (
         <div className={classes.root}>
@@ -138,7 +130,7 @@ const Header = ({ children, searchValue, searchItem }) => {
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
-                        onClick={handleDrawerOpen}
+                        onClick={() => setOpen(true)}
                         edge="start"
                         className={clsx(classes.menuButton, open && classes.hide)}
                     >
@@ -152,7 +144,7 @@ const Header = ({ children, searchValue, searchItem }) => {
                             <Search />
                         </div>
                         <InputBase
-                        placeholder="Buscar..."
+                        placeholder={messages.header.search}
                         classes={{
                             root: classes.inputRoot,
                             input: classes.inputInput,
@@ -172,19 +164,23 @@ const Header = ({ children, searchValue, searchItem }) => {
                 }}
             >
                 <div className={classes.drawerHeader}>
-                <IconButton onClick={handleDrawerClose}>
+                <IconButton onClick={() => setOpen(false)}>
                     {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                 </IconButton>
                 </div>
                 <Divider />
                 <List>
-                    <ListItem button component={RouterLink} to="/movies" onClick={() => searchItem('')}>
+                    <ListItem button onClick={() => {
+                        selectCategory('films');
+                    }}>
                         <ListItemIcon><Movie /></ListItemIcon>
-                        <ListItemText primary={'Películas'} />
+                        <ListItemText primary={messages.categories.films} />
                     </ListItem>
-                    <ListItem button component={RouterLink} to="/characters" onClick={() => searchItem('')}>
+                    <ListItem button onClick={() => {
+                        selectCategory('people')
+                    }}>
                         <ListItemIcon><RecentActors /></ListItemIcon>
-                        <ListItemText primary={'Personajes'} />
+                        <ListItemText primary={messages.categories.people} />
                     </ListItem>
                 </List>
             </Drawer>
