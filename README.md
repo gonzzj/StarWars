@@ -1,7 +1,5 @@
 # Star Wars
 
-Hosted on http://wooden-breakfast.surge.sh
-
 ## Available Scripts
 
 In the project directory, you can run:
